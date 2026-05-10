@@ -10,6 +10,9 @@ router.post('/upload', authMiddleware, upload.array('files', 10), async (req, re
   try {
     const uploadedFiles = req.files;
     const { projectId, eventId, newsId, album = 'general', title = '' } = req.body;
+    console.log('--- UPLOAD RECEIVED ---');
+    console.log('Files count:', uploadedFiles?.length);
+    console.log('Body:', req.body);
 
     const savedMedia = [];
 

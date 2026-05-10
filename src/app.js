@@ -7,9 +7,19 @@ require('dotenv').config();
 const app = express();
 
 // Security Middlewares
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "img-src": ["'self'", "data:", "https://res.cloudinary.com"],
+      "media-src": ["'self'", "https://res.cloudinary.com"],
+      "connect-src": ["'self'", "https://res.cloudinary.com"]
+    },
+  },
+}));
+
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? '*' : 'http://localhost:5173', // Update in production to specific UI URL
+  origin: true, // Allow all origins for now to troubleshoot, or set to specific Vercel URL
   credentials: true
 }));
 
