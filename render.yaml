@@ -3,20 +3,14 @@ services:
     name: husode-backend
     env: node
     plan: free
-    buildCommand: "npm install"
+    buildCommand: "npm install --legacy-peer-deps"
     startCommand: "node index.js"
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 5000
-      - key: DB_NAME
-        sync: false
-      - key: DB_USER
-        sync: false
-      - key: DB_PASSWORD
-        sync: false
-      - key: DB_HOST
+      - key: DATABASE_URL
         sync: false
       - key: JWT_SECRET
         sync: false
