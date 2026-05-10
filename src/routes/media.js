@@ -55,7 +55,8 @@ router.get('/', async (req, res) => {
     const videos = await Video.findAll();
     res.json({ images, videos });
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching media' });
+    console.error('Fetch Media Error:', error);
+    res.status(500).json({ message: 'Error fetching media', error: error.message });
   }
 });
 

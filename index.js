@@ -10,7 +10,7 @@ const initDb = async () => {
     await sequelize.authenticate();
     console.log('Database connected successfully.');
 
-    await sequelize.sync({ force: false }); // Set force:true if you want to drop tables
+    await sequelize.sync({ alter: true }); // Automatically updates table schema to match models
     console.log('Models synchronized.');
 
     // Create default superadmin if not exists
